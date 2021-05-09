@@ -1,5 +1,6 @@
 import { getRequests } from "./dataAccess.js"
 
+// Why are commas rendering here? TODO: use join method?
 export const gigRequests = () => {
     const requests = getRequests()
 

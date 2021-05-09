@@ -16,7 +16,7 @@ export const gigRequestForm = () => {
         </div>
         <div class="field">
         <label class="label" for="partyAddress">Party Address</label>
-            <input type="number" name="partyAddress" class="input" />
+            <input type="text" name="partyAddress" class="input" />
         </div>
         <div class="field">
         <label class="label" for="headcount">Party Size (headcount)</label>

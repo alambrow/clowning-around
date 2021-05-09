@@ -19,6 +19,10 @@ export const getRequests = () => {
     return [...applicationState.requests]
 }
 
+
+// Posts to API and refreshes requests list
+const mainContainer = document.querySelector("#container")
+
 export const sendRequest = (gigRequest) => {
     const fetchOptions = {
         method: "POST",
@@ -31,6 +35,6 @@ export const sendRequest = (gigRequest) => {
     return fetch(`${API}/requests`, fetchOptions)
         .then(response => response.json())
         .then(() => {
-            // code needed here?
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
         })
 }
