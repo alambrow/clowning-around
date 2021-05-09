@@ -1,4 +1,4 @@
-import { getRequests } from "./dataAccess.js"
+import { getRequests, deleteReqeust } from "./dataAccess.js"
 
 // Why are commas rendering here? TODO: use join method?
 export const gigRequests = () => {
@@ -7,7 +7,7 @@ export const gigRequests = () => {
     let html = `
         <ul>
             ${
-                requests.map(convertToListElement)
+                requests.map(convertToListElement).join("\n")
             }
         </ul>
     `
@@ -18,6 +18,18 @@ export const gigRequests = () => {
 const convertToListElement = (request) => {
     return `
         <li>Gig ${request.id} for <strong>${request.childName}</strong> (parent: ${request.parentName}) is scheduled for
-        ${request.partyDate} at the address of ${request.partyAddress} for ${request.partyLength} hour(s) and ${request.headcount} partiers!</li>
+        ${request.partyDate} at the address of ${request.partyAddress} for ${request.partyLength} hour(s) and ${request.headcount} partiers!
+        <button class="request__delete" id="request--${request.id}">Delete</button>
+        </li>
     `
 }
+
+// Event listener for delete event
+const mainContainer = document.querySelector("#container")
+
+mainContainer.addEventListener("click", click => {
+    if (click.target.id.startsWith("request--")) {
+        const [,requestId] = click.target.id.split("--")
+        deleteReqeust(parseInt(requestId))
+    }
+})

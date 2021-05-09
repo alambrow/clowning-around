@@ -38,3 +38,12 @@ export const sendRequest = (gigRequest) => {
             mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
         })
 }
+
+export const deleteReqeust = (id) => {
+    return fetch(`${API}/requests/${id}`, { method: "DELETE" })
+    .then(
+        () => {
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        }
+    )
+}
