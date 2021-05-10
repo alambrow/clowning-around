@@ -19,7 +19,7 @@ const convertToListElement = (request) => {
     return `
         <li>Gig ${request.id} for <strong>${request.childName}</strong> (parent: ${request.parentName}) is scheduled for
         ${request.partyDate} at the address of ${request.partyAddress} for ${request.partyLength} hour(s) and ${request.headcount} partiers!
-        <button class="request__delete" id="request--${request.id}">Delete</button>
+        <button class="request__delete" id="request--${request.id}">Deny Request</button>
         </li>
     `
 }
