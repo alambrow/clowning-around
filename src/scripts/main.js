@@ -1,11 +1,11 @@
 import { ClowningAround } from "./ClowningAround.js"
-import { fetchRequests } from "./dataAccess.js"
+import { fetchClowns, fetchRequests } from "./dataAccess.js"
 
-
+// TODO: still need to set up event listener for select option!
 const mainContainer = document.querySelector("#container")
 
 const render = () => {
-    fetchRequests().then(
+    fetchRequests().then(fetchClowns).then(
         () => {
             mainContainer.innerHTML = ClowningAround()
         }

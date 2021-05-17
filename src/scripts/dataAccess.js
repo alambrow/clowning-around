@@ -1,9 +1,11 @@
 const applicationState = {
-    requests: []
+    requests: [],
+    clowns: []
 }
 
 const API = "http://localhost:8088"
 
+// fetch call for requests database
 export const fetchRequests = () => {
     return fetch(`${API}/requests`)
     .then(response => response.json())
@@ -19,6 +21,20 @@ export const getRequests = () => {
     return [...applicationState.requests]
 }
 
+// fetch call for clowns database
+export const fetchClowns = () => {
+    return fetch(`${API}/clowns`)
+    .then(response => response.json())
+    .then(
+        (clowns) => {
+            applicationState.clowns = clowns
+        }
+    )
+}
+
+export const getClowns = () => {
+    return [...applicationState.clowns]
+}
 
 // Posts to API and refreshes requests list
 const mainContainer = document.querySelector("#container")
