@@ -10,7 +10,26 @@
       "id": 1
     }
   ],
-  "completions": [],
+  "completions": [
+    {
+      "requestId": 1,
+      "clownId": 1,
+      "date_created": "5/18/2021",
+      "id": 1
+    },
+    {
+      "requestId": 1,
+      "clownId": 1,
+      "date_created": "5/18/2021",
+      "id": 2
+    },
+    {
+      "requestId": 1,
+      "clownId": 1,
+      "date_created": "5/18/2021",
+      "id": 3
+    }
+  ],
   "clowns": [
     {
       "id": 1,

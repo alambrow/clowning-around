@@ -1,6 +1,7 @@
 const applicationState = {
     requests: [],
-    clowns: []
+    clowns: [],
+    completions: []
 }
 
 const API = "http://localhost:8088"
@@ -55,7 +56,23 @@ export const sendRequest = (gigRequest) => {
         })
 }
 
-export const deleteReqeust = (id) => {
+export const saveCompletion = (completion) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(completion)
+    }
+    return fetch(`${API}/completions`, fetchOptions)
+    .then (response => response.json())
+    .then(() => {
+        mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+    })
+}
+
+
+export const deleteRequest = (id) => {
     return fetch(`${API}/requests/${id}`, { method: "DELETE" })
     .then(
         () => {
