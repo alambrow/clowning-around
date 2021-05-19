@@ -1,17 +1,29 @@
-import { getRequests, getClowns, deleteRequest, saveCompletion } from "./dataAccess.js"
+import { getRequests, getClowns, deleteRequest, saveCompletion, getCompletions } from "./dataAccess.js"
 
 // Why are commas rendering here? TODO: use join method?
 export const gigRequests = () => {
     const requests = getRequests()
+    const completions = getCompletions()
+
+    for (let i = 0; i < requests.length; i++) {
+        for (let p = 0; p < completions.length; p++) {
+            if (requests[i].id === completions[p].requestId) {
+                delete requests[i]
+                break
+            }
+        }
+    }
 
     let html = `
         <ul>
             ${
                 requests.map(convertToListElement).join("\n")
             }
+            ${
+                completions.map(convertCompleteToList).join("\n")
+            }
         </ul>
     `
-
     return html
 }
 
@@ -35,6 +47,10 @@ const convertToListElement = (request) => {
         <button class="request__delete" id="request--${request.id}">Deny Request</button>
         </li>
     `
+}
+
+const convertCompleteToList = (completion) => {
+    return `<li>Gig ${completion.id}, completed on ${completion.date_created}</li>`
 }
 
 // Event listeners for delete event and change event (to send request to completion state)

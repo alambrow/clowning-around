@@ -22,7 +22,6 @@ export const getRequests = () => {
     return [...applicationState.requests]
 }
 
-// fetch call for clowns database
 export const fetchClowns = () => {
     return fetch(`${API}/clowns`)
     .then(response => response.json())
@@ -37,7 +36,20 @@ export const getClowns = () => {
     return [...applicationState.clowns]
 }
 
-// Posts to API and refreshes requests list
+export const fetchCompletions = () => {
+    return fetch(`${API}/completions`)
+    .then(response => response.json())
+    .then(
+        (completions) => {
+            applicationState.completions = completions
+        }
+    )
+}
+
+export const getCompletions = () => {
+    return [...applicationState.completions]
+}
+
 const mainContainer = document.querySelector("#container")
 
 export const sendRequest = (gigRequest) => {
